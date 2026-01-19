@@ -65,7 +65,7 @@ export default function AdminOrderDetail() {
     }
   };
 
-  const updateOrderStatus = async (newStatus: string) => {
+  const updateOrderStatus = async (newStatus: 'pending' | 'processing' | 'shipped' | 'delivered' | 'canceled') => {
     if (!order) return;
 
     try {

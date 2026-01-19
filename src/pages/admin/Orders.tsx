@@ -71,7 +71,7 @@ export default function AdminOrders() {
     }
   };
 
-  const updateOrderStatus = async (orderId: string, newStatus: string) => {
+  const updateOrderStatus = async (orderId: string, newStatus: 'pending' | 'processing' | 'shipped' | 'delivered' | 'canceled') => {
     try {
       const { error } = await supabase
         .from('orders')
@@ -201,7 +201,7 @@ export default function AdminOrders() {
                     <TableCell>
                       <Select
                         value={order.status}
-                        onValueChange={(value) => updateOrderStatus(order.id, value)}
+                        onValueChange={(value) => updateOrderStatus(order.id, value as 'pending' | 'processing' | 'shipped' | 'delivered' | 'canceled')}
                       >
                         <SelectTrigger className={`w-[130px] border ${statusColors[order.status]}`}>
                           <SelectValue />
